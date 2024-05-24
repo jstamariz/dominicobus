@@ -1,7 +1,8 @@
 @page
 @model DominicoBus.Pages.Home
-@{
-    ViewData["Title"] = "Home";
-}
+@inject ContentService contentService
 
-<p>Hello</p>
+<hgroup>
+    <h1>@contentService.GetContent("home", "title")</h1>
+    <p>@contentService.GetContent("home", "subtitle")</p>
+</hgroup>

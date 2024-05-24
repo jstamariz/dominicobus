@@ -29,7 +29,7 @@
             </a>
         </div>
         <hr>
-        <nav x-show="isOpen" class="container dominco_bus-menu">
+        <nav x-cloak x-show="isOpen" class="container dominco_bus-menu">
             <ul class="pure-menu-list">
                 <li class="pure-menu-item">
                     <a href="" class="pure-menu-link">@contentService.GetContent("menu", "buses")</a>
@@ -49,6 +49,13 @@
     <main class="container">
         @RenderBody()
     </main>
+    <footer class="container">
+        <hr>
+        <small>
+            DominicoBús &copy;
+            @DateTime.Now.Year
+        </small>
+    </footer>
 </body>
 
 </html>

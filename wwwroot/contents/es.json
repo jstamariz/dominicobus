@@ -4,5 +4,9 @@
 		"users": "Usuarios",
 		"routes": "Rutas",
 		"stops": "Paradas"
+	},
+	"home": {
+		"title": "Bienvenid@",
+		"subtitle": "A DominicoBús, el sistema de manejo de los autobúses de todos los dominicanos."
 	}
 }
