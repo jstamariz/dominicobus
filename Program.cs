@@ -1,7 +1,7 @@
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddRazorPages();
 builder.Services.AddControllers();
-
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
@@ -17,7 +17,11 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
+app.UseStaticFiles();
 
+app.MapRazorPages();
 app.MapControllers();
+
+app.MapGet("/", () => Results.Redirect("Home"));
 
 app.Run();

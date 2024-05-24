@@ -1,0 +1,53 @@
+<html>
+
+<head>
+    <link rel="stylesheet" href="~/styles/pico.css">
+    <link rel="stylesheet" href="~/styles/styles.css">
+    <link rel="stylesheet" href="~/styles/pico.colors.css">
+    <link rel="stylesheet" href="~/styles/pure.min.css">
+    <link rel='stylesheet' href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css'>
+    <script src="https://unpkg.com/htmx.org@1.9.12"></script>
+    <script src="//unpkg.com/alpinejs" defer></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<div class="sidenav">
+    <a href=""></a>
+</div>
+
+<body>
+    <header x-data="{isOpen: false}">
+        <div class="container pure-g">
+            <button @@click="isOpen = !isOpen" class="outline">
+                <i class="bx bx-menu"></i>
+            </button>
+            <a href="/" class="pure-menu-heading">
+                <b>
+                    <span>DominicoBús</span>
+                </b>
+                <i class="bx bx-bus"></i>
+            </a>
+        </div>
+        <hr>
+        <nav x-show="isOpen" class="container dominco_bus-menu">
+            <ul class="pure-menu-list">
+                <li class="pure-menu-item">
+                    <a href="" class="pure-menu-link">Autobuses</a>
+                </li>
+                <li class="pure-menu-item">
+                    <a href="" class="pure-menu-link">Usuarios</a>
+                </li>
+                <li class="pure-menu-item">
+                    <a href="" class="pure-menu-link">Rutas</a>
+                </li>
+                <li class="pure-menu-item">
+                    <a href="" class="pure-menu-link">Paradas</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <main class="container">
+        @RenderBody()
+    </main>
+</body>
+
+</html>
