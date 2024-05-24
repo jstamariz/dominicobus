@@ -1,3 +1,4 @@
+@inject ContentService contentService;
 <html>
 
 <head>
@@ -31,16 +32,16 @@
         <nav x-show="isOpen" class="container dominco_bus-menu">
             <ul class="pure-menu-list">
                 <li class="pure-menu-item">
-                    <a href="" class="pure-menu-link">Autobuses</a>
+                    <a href="" class="pure-menu-link">@contentService.GetContent("menu", "buses")</a>
                 </li>
                 <li class="pure-menu-item">
-                    <a href="" class="pure-menu-link">Usuarios</a>
+                    <a href="" class="pure-menu-link">@contentService.GetContent("menu", "users")</a>
                 </li>
                 <li class="pure-menu-item">
-                    <a href="" class="pure-menu-link">Rutas</a>
+                    <a href="" class="pure-menu-link">@contentService.GetContent("menu", "routes")</a>
                 </li>
                 <li class="pure-menu-item">
-                    <a href="" class="pure-menu-link">Paradas</a>
+                    <a href="" class="pure-menu-link">@contentService.GetContent("menu", "stops")</a>
                 </li>
             </ul>
         </nav>

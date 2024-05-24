@@ -1,9 +1,14 @@
+using DominicoBus.Services;
+
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddRazorPages();
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+// TODO: Extract service initialization to it's own class
+builder.Services.AddSingleton<ContentService>();
 
 var app = builder.Build();
 
