@@ -7,7 +7,8 @@ namespace DominicoBus.Models
 {
     public class Route
     {
-        public string Name { get; set; }
-        public List<Stop> Stops { get; set; }
+        public string? Id { get; set; }
+        public string? Name { get; set; }
+        public List<Stop> Stops { get; set; } = new List<Stop>();
     }
 }
