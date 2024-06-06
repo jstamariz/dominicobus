@@ -10,7 +10,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
 builder.Services.AddControllers();
-builder.Services.AddEndpointsApiExplorer();
+
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
 
@@ -33,6 +33,9 @@ app.UseAuthorization();
 app.UseAuthentication();
 app.UseStaticFiles();
 
+app.UseRouting();
+
+app.MapBlazorHub();
 app.MapRazorPages();
 app.MapControllers();
 

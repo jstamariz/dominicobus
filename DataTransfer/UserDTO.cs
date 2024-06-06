@@ -8,15 +8,15 @@ namespace DominicoBus.DataTransfer
 {
     public class UserDTO
     {
-        [Required(ErrorMessage = "This field is required")]
+        [Required]
         public string? Username { get; set; }
-        [Required(ErrorMessage = "This field is required")]
+        [Required]
         [DataType(DataType.EmailAddress)]
         public string? Email { get; set; }
-        [Required(ErrorMessage = "This field is required")]
+        [Required]
         [DataType(DataType.Password)]
         public string? Password { get; set; }
-        [Required(ErrorMessage = "This field is required")]
+        [Required]
         [DataType(DataType.Password)]
         [Compare(nameof(Password))]
         public string? ConfirmPassword { get; set; }
