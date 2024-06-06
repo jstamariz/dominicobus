@@ -3,16 +3,19 @@
 
 <head>
     <title>DominicoBús</title>
-    <link rel="icon" type="image/x-icon" href="~/icons/logo.ico">
-    <link rel="stylesheet" href="~/styles/pico.css">
-    <link rel="stylesheet" href="~/styles/styles.css">
-    <link rel="stylesheet" href="~/styles/pico.colors.css">
-    <link rel="stylesheet" href="~/styles/pure.min.css">
+    <base href="~/" />
+    <link rel="icon" type="image/x-icon" href="icons/logo.ico">
+    <link rel="stylesheet" href="styles/pico.css">
+    <link rel="stylesheet" href="styles/styles.css">
+    <link rel="stylesheet" href="styles/pico.colors.css">
+    <link rel="stylesheet" href="styles/pure.min.css">
     <link rel='stylesheet' href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css'>
     <script src="https://unpkg.com/htmx.org@1.9.12"></script>
     <script src="//unpkg.com/alpinejs" defer></script>
-    <script src="~/scripts/blazor_htmx.js"></script>
+    <script src="scripts/blazor_htmx.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <component type="typeof(HeadOutlet)" render-mode="ServerPrerendered" />
 </head>
 <body>
     <header x-data="{isOpen: false}">
@@ -55,6 +58,6 @@
             @DateTime.Now.Year
         </small>
     </footer>
+    <script src="_framework/blazor.web.js"></script>
 </body>
-
 </html>

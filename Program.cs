@@ -7,8 +7,8 @@ using Microsoft.AspNetCore.Identity;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
+builder.Services.AddRazorPages();
 builder.Services.AddControllers();
 
 builder.Services.AddRazorComponents()
@@ -35,8 +35,8 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
-app.MapBlazorHub();
 app.MapRazorPages();
+app.MapBlazorHub();
 app.MapControllers();
 
 app.MapRazorComponents<DominicoBus.Components.Forms.UserForm>();

@@ -1,4 +1,4 @@
-<EditForm Model=model FormName="Users" method="post" Enhance="true">
+<EditForm Model=@model FormName="Users" Enhance="true" OnSubmit="HandleSubmit">
     <DataAnnotationsValidator/>
     <ValidationSummary/>
     <div class="grid">
@@ -29,5 +29,10 @@
 </EditForm>
 
 @code {
-    [Parameter] public UserDTO model { get; set; } = new();
+    [SupplyParameterFromForm] public UserDTO model { get; set; } = new();
+
+    void HandleSubmit(EditContext context)
+    {
+        context.Validate();
+    }
 } 
