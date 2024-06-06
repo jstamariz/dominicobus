@@ -975,6 +975,7 @@ button {
   overflow: visible;
   font-family: inherit;
   text-transform: none;
+  font-size: .8rem;
 }
 
 button,
@@ -1002,7 +1003,6 @@ button,
   box-shadow: var(--pico-box-shadow);
   color: var(--pico-color);
   font-weight: var(--pico-font-weight);
-  font-size: 1rem;
   line-height: var(--pico-line-height);
   text-align: center;
   text-decoration: none;
@@ -1399,7 +1399,6 @@ fieldset legend {
 }
 
 input:not([type=checkbox], [type=radio]),
-button[type=submit],
 select,
 textarea {
   width: 100%;

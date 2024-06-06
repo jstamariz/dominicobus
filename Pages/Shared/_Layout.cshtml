@@ -2,9 +2,7 @@
 <html>
 
 <head>
-
     <title>DominicoBús</title>
-
     <link rel="icon" type="image/x-icon" href="~/icons/logo.ico">
     <link rel="stylesheet" href="~/styles/pico.css">
     <link rel="stylesheet" href="~/styles/styles.css">
@@ -13,12 +11,9 @@
     <link rel='stylesheet' href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css'>
     <script src="https://unpkg.com/htmx.org@1.9.12"></script>
     <script src="//unpkg.com/alpinejs" defer></script>
+    <script src="~/scripts/blazor_htmx.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
-<div class="sidenav">
-    <a href=""></a>
-</div>
-
 <body>
     <header x-data="{isOpen: false}">
         <div class="container pure-g">
@@ -39,7 +34,7 @@
                     <a href="" class="pure-menu-link">@contentService.GetContent("menu", "buses")</a>
                 </li>
                 <li class="pure-menu-item">
-                    <a href="" class="pure-menu-link">@contentService.GetContent("menu", "users")</a>
+                    <a href="/users" class="pure-menu-link">@contentService.GetContent("menu", "users")</a>
                 </li>
                 <li class="pure-menu-item">
                     <a href="" class="pure-menu-link">@contentService.GetContent("menu", "routes")</a>

@@ -1,0 +1,13 @@
+@page
+@model DominicoBus.Pages.Users.Index
+@inject ContentService contentService
+
+<h1>@contentService.GetContent("users", "title")</h1>
+
+<a href="/users/create" role="button" class="outline contrast">
+@contentService.GetContent("users", "create_button")
+</a>
+
+<div>
+    
+</div>

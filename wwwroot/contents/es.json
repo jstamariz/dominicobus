@@ -8,5 +8,9 @@
 	"home": {
 		"title": "Bienvenid@",
 		"subtitle": "A DominicoBús, el sistema de manejo de los autobúses de todos los dominicanos."
+	},
+	"users": {
+		"title": "Usuarios",
+		"create_button": "Crear Usuario"
 	}
 }

@@ -1,0 +1,33 @@
+<EditForm Model=@model >
+    <DataAnnotationsValidator/>
+    <ValidationSummary/>
+    <div class="grid">
+        <div>
+            <label for="username">User Name</label>
+            <InputText id="Username" @bind-Value="model.Username" />
+            <ValidationMessage For="@(() => model.Username)" />
+        </div>
+    </div>
+    <div class="grid">
+        <div>
+            <label for="email">Email</label>
+            <InputText type='email' id="email" @bind-Value="model.Email"/>
+            <ValidationMessage For="@(() => model.Email)"/>
+        </div>
+        <div>
+            <label for="password">Password</label>
+            <InputText type='password' id="password" @bind-Value='model.Password'/>
+            <ValidationMessage For="@(() => model.Password)" />
+        </div>
+        <div>
+            <label for="confirm-password">Confirm Password</label>
+            <InputText type='password' id="confirm-password" @bind-Value='model.ConfirmPassword'/>
+            <ValidationMessage For="@(() => model.ConfirmPassword)" />
+        </div>
+    </div>
+    <button type="submit">Submit</button>
+</EditForm>
+
+@code {
+    [Parameter] public UserDTO model { get; set; } = new();
+} 
