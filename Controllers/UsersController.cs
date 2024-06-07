@@ -1,6 +1,9 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Http.HttpResults;
 using DominicoBus.DataTransfer;
 using DominicoBus.Services;
+using DominicoBus.Components.Tables;
+using System.Collections.ObjectModel;
 
 namespace DominicoBus.Controllers
 {
@@ -13,15 +16,16 @@ namespace DominicoBus.Controllers
             _userService = service;
         }
 
-        [HttpPost]
-        public async Task<IActionResult> Create([FromBody] UserDTO user)
+        [HttpPost("search")]
+        public IResult Search(string search)
         {
-            if (ModelState.IsValid)
+            if(string.IsNullOrEmpty(search))
             {
-                await _userService.Create(user);
-                return Created();
+                return new RazorComponentResult<UsersTable>();
             }
-            return BadRequest();
+
+            var userResults = _userService.Search(search);
+            return new RazorComponentResult<UsersTable>(new { results = userResults });
         }
 
     }

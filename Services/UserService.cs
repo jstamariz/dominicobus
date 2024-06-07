@@ -25,9 +25,18 @@ namespace DominicoBus.Services
 
             if (user.Password is not null)
             {
-                await _userManager.CreateAsync(identityUser, user.Password);
+                var result = await _userManager.CreateAsync(identityUser, user.Password);
+                System.Console.WriteLine(result);
             }
 
+        }
+
+        public IEnumerable<UserResult> Search(string search)
+        {
+            return _userManager.Users
+                .Where(user => user.NormalizedUserName.Contains(search.ToUpper()) || user.NormalizedEmail.Contains(search.ToUpper()))
+                .Select(user => new UserResult(user.UserName, user.Email, user.Id))
+                .ToList();
         }
 
     }

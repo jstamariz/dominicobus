@@ -1,0 +1,35 @@
+<table class="stripped">
+    <thead>
+        <tr>
+            <th scope="col">Username</th>
+            <th scope="col">Email</th>
+            <th scope="col">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var user in results)
+        {
+            <tr>
+                <th scope="row">@user.userName</th>
+                <th>@user.Email</th>
+                <th>
+                    <a href="@getUserUrl(user.Id)" role="button"> 
+                        <i class='bx bx-edit'></i>
+                    </a>
+                    <button hx-swap="delete transition:true" hx-delete="@getUserUrl(user.Id)">
+                        <i class='bx bx-trash'></i>
+                    </button>
+                </th>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@code {
+    [Parameter]
+    public List<UserResult> results { get; set; } = new List<UserResult>(); 
+    string getUserUrl(string userId) 
+    { 
+        return $"users/{userId}";
+    }
+} 

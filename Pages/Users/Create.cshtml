@@ -3,4 +3,4 @@
 
 <h1>Create User</h1>
 
-<component type="typeof(DominicoBus.Components.Forms.UserForm)" render-mode="ServerPrerendered" />
+@await (Html.RenderComponentAsync<UserForm>(Microsoft.AspNetCore.Mvc.Rendering.RenderMode.ServerPrerendered))

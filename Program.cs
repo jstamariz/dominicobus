@@ -23,7 +23,6 @@ builder.Services.AddSingleton<ContentService>();
 builder.Services.AddScoped<UserService>();
 
 builder.Services.AddAuthentication();
-builder.Services.AddAuthorization();
 
 var app = builder.Build();
 

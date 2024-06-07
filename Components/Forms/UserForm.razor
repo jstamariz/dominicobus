@@ -1,4 +1,7 @@
-<EditForm Model=@model FormName="Users" Enhance="true" OnSubmit="HandleSubmit">
+@inject UserService service
+@inject NavigationManager navigationManager
+
+<EditForm Model=@model FormName="Users" Enhance="true" OnValidSubmit="HandleValidSubmit">
     <DataAnnotationsValidator/>
     <ValidationSummary/>
     <div class="grid">
@@ -31,8 +34,9 @@
 @code {
     [SupplyParameterFromForm] public UserDTO model { get; set; } = new();
 
-    void HandleSubmit(EditContext context)
+    async Task HandleValidSubmit()
     {
-        context.Validate();
+        await service.Create(model);
+        navigationManager.NavigateTo("/users");
     }
 } 
