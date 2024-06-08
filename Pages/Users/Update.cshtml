@@ -1,0 +1,6 @@
+@page "/users/{userId?}"
+
+<h1>Update User</h1>
+
+@(await Html.RenderComponentAsync<UserForm>(Microsoft.AspNetCore.Mvc.Rendering.RenderMode.ServerPrerendered,
+    new { formMode = FormMode.Edit, userId = RouteData.Values["userId"] })) 

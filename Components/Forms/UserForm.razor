@@ -19,12 +19,19 @@
         </div>
         <div>
             <label for="password">Password</label>
-            <InputText type='password' id="password" @bind-Value='model.Password'/>
+            <InputText type='password' 
+                id="password" 
+                @bind-Value='model.Password' 
+                disabled="@(formMode == FormMode.Edit)"/>
             <ValidationMessage For="@(() => model.Password)" />
         </div>
         <div>
             <label for="confirm-password">Confirm Password</label>
-            <InputText type='password' id="confirm-password" @bind-Value='model.ConfirmPassword'/>
+            <InputText 
+                type='password' 
+                id="confirm-password" 
+                @bind-Value='model.ConfirmPassword' 
+                disabled="@(formMode == FormMode.Edit)"/>
             <ValidationMessage For="@(() => model.ConfirmPassword)" />
         </div>
     </div>
@@ -32,11 +39,35 @@
 </EditForm>
 
 @code {
-    [SupplyParameterFromForm] public UserDTO model { get; set; } = new();
-
+    [Parameter] public FormMode formMode { get; set; } = FormMode.New;
+    [Parameter] public string? userId {get; set;}
+    public UserDTO model { get; set; } = new();
+    
+    protected override async Task OnInitializedAsync()
+    {
+        if (formMode == FormMode.Edit && userId is not null) 
+        {
+            var userOnDb = await service.Get(userId);
+            
+            if(userOnDb is not null)
+            {
+                model = userOnDb;
+            }
+        }
+    }
+    
     async Task HandleValidSubmit()
     {
-        await service.Create(model);
+        if (formMode == FormMode.New)
+        {
+            await service.Create(model);
+        }
+        if (formMode == FormMode.Edit && userId is not null) 
+        {
+            await service.Update(model, userId);
+        }
+
         navigationManager.NavigateTo("/users");
     }
 } 
+
