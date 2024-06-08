@@ -61,6 +61,17 @@ namespace DominicoBus.Services
             return default;
         }
 
+        public async Task DeleteAsync(string? userId)
+        {
+            if (userId is null) return;
+            var userOnDb = await _userManager.FindByIdAsync(userId);
+            
+            if (userOnDb is not null)
+            {
+                await _userManager.DeleteAsync(userOnDb);
+            }
+        }
+
         public IEnumerable<UserResult> Search(string search)
         {
             return _userManager.Users

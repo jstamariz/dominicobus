@@ -16,7 +16,7 @@
                     <a href="@getUserUrl(user.Id)" role="button"> 
                         <i class='bx bx-edit'></i>
                     </a>
-                    <button hx-swap="delete transition:true" hx-delete="@getUserUrl(user.Id)">
+                    <button hx-target="closest tr" hx-delete="api/@getUserUrl(user.Id)">
                         <i class='bx bx-trash'></i>
                     </button>
                 </th>

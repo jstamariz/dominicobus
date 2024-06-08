@@ -19,13 +19,20 @@ namespace DominicoBus.Controllers
         [HttpPost("search")]
         public IResult Search(string search)
         {
-            if(string.IsNullOrEmpty(search))
+            if (string.IsNullOrEmpty(search))
             {
                 return new RazorComponentResult<UsersTable>();
             }
 
             var userResults = _userService.Search(search);
             return new RazorComponentResult<UsersTable>(new { results = userResults });
+        }
+
+        [HttpDelete("{Id}")]
+        public async Task<IActionResult> Delete(string Id)
+        {
+            await _userService.DeleteAsync(Id);
+            return Ok();
         }
 
     }
