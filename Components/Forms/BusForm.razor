@@ -1,0 +1,55 @@
+@using static DominicoBus.Utils.FormMode
+@inject NavigationManager navigationManager
+@inject BusService service
+
+<EditForm Model="@model" FormName="Buses" Enhance="true" OnValidSubmit="HandleValidSubmit">
+    <DataAnnotationsValidator/>
+    <ValidationSummary/>
+    <span>
+        <label for="code">Code</label>
+        <InputText id="Code" @bind-Value="model.Code"  />
+        <ValidationMessage For="@(() => model.Code)" />
+    </span>
+    <span>
+        <label for="capacity">Capacity</label>
+        <InputNumber id="Capacity" @bind-Value="model.Capacity"  />
+        <ValidationMessage For="@(() => model.Capacity)" />
+    </span>
+    <button type="submit">Submit</button>
+</EditForm>
+
+@code {
+    [Parameter]
+    public FormMode formMode { get; set; } = New;
+    [Parameter]
+    public string? Id { get; set; }
+    public BusDTO model { get; set; } = new();
+
+    protected override async Task OnInitializedAsync()
+    {
+        if (formMode == Edit && Id is not null) 
+        {
+            var busOnDb = await service.GetAsync(Id);
+            
+            if(busOnDb is not null)
+            {
+                model = busOnDb;
+            }
+        }
+    }
+
+    async Task HandleValidSubmit()
+    {
+        if(formMode == New)
+        {
+            await service.CreateAsync(model);
+        }
+
+        if(formMode == Edit)
+        {
+            await service.UpdateAsync(model, Id);
+        }
+
+        navigationManager.NavigateTo("/buses");
+    }
+}

@@ -21,6 +21,7 @@ builder.Services.AddIdentityCore<IdentityUser>()
 builder.Services.AddDbContext<AppDbContext>(options => options.UseNpgsql(builder.Configuration.GetConnectionString("Default")));
 builder.Services.AddSingleton<ContentService>();
 builder.Services.AddScoped<UserService>();
+builder.Services.AddScoped<BusService>();
 
 builder.Services.AddAuthentication();
 

@@ -12,5 +12,9 @@
 	"users": {
 		"title": "Usuarios",
 		"create_button": "Crear Usuario"
+	},
+	"buses": {
+		"title": "Autobuses",
+		"create_button": "Añadir Nuevo Bús"
 	}
 }

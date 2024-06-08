@@ -1,0 +1,35 @@
+<table class="stripped">
+    <thead>
+        <tr>
+            <th scope="col">Code</th>
+            <th scope="col">Capacity</th>
+            <th scope="col">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var bus in results)
+        {
+            <tr>
+                <th scope="row">@bus.Code</th>
+                <th>@bus.Capacity</th>
+                <th>
+                    <a href="@getBusUrl(bus.Id)" role="button"> 
+                        <i class='bx bx-edit'></i>
+                    </a>
+                    <button hx-target="closest tr" hx-delete="api/@getBusUrl(bus.Id)">
+                        <i class='bx bx-trash'></i>
+                    </button>
+                </th>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@code {
+    [Parameter]
+    public List<BusResult> results { get; set; } = new List<BusResult>(); 
+    string getBusUrl(string busId) 
+    { 
+        return $"buses/{busId}";
+    }
+} 
