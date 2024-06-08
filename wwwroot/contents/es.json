@@ -16,5 +16,9 @@
 	"buses": {
 		"title": "Autobuses",
 		"create_button": "Añadir Nuevo Bús"
+	},
+	"stops": {
+		"title": "Paradas",
+		"create_button": "Añadir Nueva Parada"
 	}
 }

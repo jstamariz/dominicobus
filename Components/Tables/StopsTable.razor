@@ -1,0 +1,37 @@
+<table class="stripped">
+    <thead>
+        <tr>
+            <th scope="col">Code</th>
+            <th scope="col">Name</th>
+            <th scope="col">Lat / Long</th>
+            <th scope="col">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var stop in results)
+        {
+            <tr>
+                <th scope="row">@stop.Code</th>
+                <th>@stop.Name</th>
+                <th>@($"{stop.Latitude}, {stop.Longitude}")</th>
+                <th>
+                    <a href="@getStopUrl(stop.Id)" role="button"> 
+                        <i class='bx bx-edit'></i>
+                    </a>
+                    <button hx-target="closest tr" hx-delete="api/@getStopUrl(stop.Id)">
+                        <i class='bx bx-trash'></i>
+                    </button>
+                </th>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@code {
+    [Parameter]
+    public List<StopDTO> results { get; set; } = new List<StopDTO>(); 
+    string getStopUrl(string? stopId) 
+    { 
+        return $"stops/{stopId}";
+    }
+} 

@@ -1,0 +1,6 @@
+@page "/stops/{Id?}"
+
+<h1>Update Bus</h1>
+
+@(await Html.RenderComponentAsync<StopForm>(Rendering.RenderMode.ServerPrerendered,
+    new { formMode = FormMode.Edit, Id = RouteData.Values["Id"] })) 

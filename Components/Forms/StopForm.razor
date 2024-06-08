@@ -1,0 +1,69 @@
+@using static DominicoBus.Utils.FormMode
+@inject NavigationManager navigationManager
+@inject StopService service
+
+<EditForm Model="@model" FormName="Buses" Enhance="true" OnValidSubmit="HandleValidSubmit">
+    <DataAnnotationsValidator/>
+    <ValidationSummary/>
+    <div class="grid">
+        <span>
+            <label for="name">Name</label>
+            <InputText id="Name" @bind-Value="model.Name"  />
+            <ValidationMessage For="@(() => model.Name)" />
+        </span>
+        <span>
+            <label for="code">Code</label>
+            <InputText id="Code" @bind-Value="model.Code"  />
+            <ValidationMessage For="@(() => model.Code)" />
+        </span>
+    </div>
+     <div class="grid">
+        <span>
+            <label for="latitude">Latitude</label>
+            <InputNumber id="Latitude" @bind-Value="model.Latitude"  />
+            <ValidationMessage For="@(() => model.Latitude)" />
+        </span>
+        <span>
+            <label for="longitude">Longitude</label>
+            <InputNumber id="Longitude" @bind-Value="model.Longitude"  />
+            <ValidationMessage For="@(() => model.Longitude)" />
+        </span>
+    </div>
+    <button type="submit">Submit</button>
+</EditForm>
+
+@code {
+    [Parameter]
+    public FormMode formMode { get; set; } = New;
+    [Parameter]
+    public string? Id { get; set; }
+    public StopDTO model { get; set; } = new();
+
+    protected override async Task OnInitializedAsync()
+    {
+        if (formMode == Edit && Id is not null) 
+        {
+            var stopOnDb = await service.GetAsync(Id);
+            
+            if(stopOnDb is not null)
+            {
+                model = stopOnDb;
+            }
+        }
+    }
+
+    async Task HandleValidSubmit()
+    {
+        if(formMode == New)
+        {
+            await service.CreateAsync(model);
+        }
+
+        if(formMode == Edit)
+        {
+            await service.UpdateAsync(model, Id);
+        }
+
+        navigationManager.NavigateTo("/stops");
+    }
+}

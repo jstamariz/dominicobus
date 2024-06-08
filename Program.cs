@@ -22,6 +22,7 @@ builder.Services.AddDbContext<AppDbContext>(options => options.UseNpgsql(builder
 builder.Services.AddSingleton<ContentService>();
 builder.Services.AddScoped<UserService>();
 builder.Services.AddScoped<BusService>();
+builder.Services.AddScoped<StopService>();
 
 builder.Services.AddAuthentication();
 
