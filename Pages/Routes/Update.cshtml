@@ -1,0 +1,6 @@
+@page "/routes/{Id?}"
+
+<h1>Update Route</h1>
+
+@(await Html.RenderComponentAsync<RouteForm>(Rendering.RenderMode.ServerPrerendered,
+    new { formMode = FormMode.Edit, Id = RouteData.Values["Id"] })) 

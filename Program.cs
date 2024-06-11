@@ -2,6 +2,7 @@ using DominicoBus.Services;
 using DominicoBus.Db;
 using Microsoft.EntityFrameworkCore;
 using DominicoBus.Components;
+using DominicoBus.Utils;
 using Microsoft.AspNetCore.Components.Endpoints;
 using Microsoft.AspNetCore.Identity;
 
@@ -20,9 +21,11 @@ builder.Services.AddIdentityCore<IdentityUser>()
 // TODO: Extract service initialization to it's own class
 builder.Services.AddDbContext<AppDbContext>(options => options.UseNpgsql(builder.Configuration.GetConnectionString("Default")));
 builder.Services.AddSingleton<ContentService>();
+builder.Services.AddScoped<DOMHelper>();
 builder.Services.AddScoped<UserService>();
 builder.Services.AddScoped<BusService>();
 builder.Services.AddScoped<StopService>();
+builder.Services.AddScoped<RouteService>();
 
 builder.Services.AddAuthentication();
 

@@ -1,0 +1,74 @@
+@using static DominicoBus.Utils.FormMode
+@inject NavigationManager navigationManager
+@inject RouteService service
+@inject StopService stopService
+@inject DOMHelper helper
+
+<EditForm Model="@model" FormName="Buses" Enhance="true" OnValidSubmit="HandleValidSubmit">
+    <DataAnnotationsValidator/>
+    <ValidationSummary/>
+    <span>
+        <label for="Name">Name</label>
+        <InputText id="Name" @bind-Value="model.Name"  />
+        <ValidationMessage For="@(() => model.Name)" />
+    </span>
+    <span>
+        <label for="Stops">Stops</label>
+        <select multiple @ref="selectReference" @onchange="OnSelectionChanged">
+            @foreach (var stop in stops)
+            {
+                <option selected="@isOptionSelected(stop.Id)" value="@stop.Id">@stop.name</option>
+            }
+        </select>
+    </span>
+    <button type="submit">Submit</button>
+</EditForm>
+
+@code {
+    [Parameter]
+    public FormMode formMode { get; set; } = New;
+    [Parameter]
+    public string? Id { get; set; }
+    public RouteDTO model { get; set; } = new();
+    ElementReference selectReference = new ElementReference();
+    List<RouteStop> stops = new();
+
+    protected override async Task OnInitializedAsync()
+    {
+        stops = stopService.GetAll().ToList();
+
+        if (formMode == Edit && Id is not null) 
+        {
+            var routeOnDb = await service.GetAsync(Id);
+            
+            if (routeOnDb is not null)
+            {
+                model = routeOnDb;
+            }
+        }
+    }
+
+    private async Task OnSelectionChanged() {
+        model.Stops = (await helper.GetSelectedValues(selectReference))
+            .Select(stopId => stops.First(x => x.Id == stopId)).ToList();
+    }
+
+    private bool isOptionSelected(string stopId) {
+        return model.Stops.Any(stop => stop.Id == stopId);
+    }
+
+    async Task HandleValidSubmit()
+    {
+        if(formMode == New)
+        {
+            await service.CreateAsync(model);
+        }
+
+        if(formMode == Edit)
+        {
+            await service.UpdateAsync(model, Id);
+        }
+
+        navigationManager.NavigateTo("/routes");
+    }
+}

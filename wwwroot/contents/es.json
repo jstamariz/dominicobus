@@ -20,5 +20,9 @@
 	"stops": {
 		"title": "Paradas",
 		"create_button": "Añadir Nueva Parada"
+	},
+	"routes": {
+		"title": "Rutas",
+		"create_button": "Añadir Nueva Ruta"
 	}
 }

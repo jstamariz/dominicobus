@@ -1,0 +1,22 @@
+@page
+@inject ContentService contentService
+
+<h1>@contentService.GetContent("routes", "title")</h1>
+
+<div class="pure-g sb">
+    <span class="pure-u-5-6">
+    <input 
+        hx-post="api/routes/search" 
+        hx-target="#results"
+        hx-trigger="input changed delay:500ms, search"
+        name="search" 
+        type="text" 
+        placeholder="Search"/>
+    </span>
+    <span class="pure-u-lg-1-6">
+        <a href="/routes/create" role="button" class="outline contrast">
+            @contentService.GetContent("routes", "create_button")
+        </a>
+    </span>
+</div>
+<div id="results"></div>

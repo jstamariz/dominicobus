@@ -89,5 +89,10 @@ namespace DominicoBus.Services
                 })
                 .ToList();
         }
+
+        public IEnumerable<RouteStop> GetAll()
+        {
+            return _context.Stops.Select(x => new RouteStop(x.Name, x.Id)).ToList();
+        }
     }
 }

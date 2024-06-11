@@ -2,7 +2,9 @@
     display: block;
 }
 
-[x-cloak] { display: none !important; }
+[x-cloak] {
+    display: none !important;
+}
 
 footer {
     position: fixed;
@@ -13,4 +15,8 @@ footer {
 
 .sb {
     justify-content: space-between;
+}
+
+button[type="submit"] {
+    margin-top: 1rem;
 }

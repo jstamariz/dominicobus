@@ -1,17 +1,22 @@
+using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using Microsoft.AspNetCore.Http.HttpResults;
-using DominicoBus.DataTransfer;
-using DominicoBus.Services;
 using DominicoBus.Components.Tables;
-using System.Collections.ObjectModel;
+using DominicoBus.Services;
 
 namespace DominicoBus.Controllers
 {
     [Route("api/[controller]")]
-    public class StopsController : Controller
+    public class RoutesController : Controller
     {
-        private readonly StopService _service;
-        public StopsController(StopService service)
+        private readonly RouteService _service;
+
+        public RoutesController(RouteService service)
         {
             _service = service;
         }
@@ -21,11 +26,11 @@ namespace DominicoBus.Controllers
         {
             if (string.IsNullOrEmpty(search))
             {
-                return new RazorComponentResult<BusTable>();
+                return new RazorComponentResult<RouteTable>();
             }
 
-            var stopsResult = _service.Search(search);
-            return new RazorComponentResult<StopsTable>(new { results = stopsResult });
+            var userResults = _service.Search(search);
+            return new RazorComponentResult<RouteTable>(new { results = userResults });
         }
 
         [HttpDelete("{Id}")]

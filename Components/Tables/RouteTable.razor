@@ -1,0 +1,33 @@
+<table class="stripped">
+    <thead>
+        <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var route in results)
+        {
+            <tr>
+                <th scope="row">@route.Name</th>
+                <th>
+                    <a href="@getRouteUrl(route.Id)" role="button"> 
+                        <i class='bx bx-edit'></i>
+                    </a>
+                    <button hx-target="closest tr" hx-delete="api/@getRouteUrl(route.Id)">
+                        <i class='bx bx-trash'></i>
+                    </button>
+                </th>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@code {
+    [Parameter]
+    public List<RouteDTO> results { get; set; } = new List<RouteDTO>(); 
+    string getRouteUrl(string? routeId) 
+    { 
+        return $"routes/{routeId}";
+    }
+} 
